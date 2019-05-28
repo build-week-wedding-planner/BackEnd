@@ -95,4 +95,63 @@ server.post('/login', (req, res) => {
 })
 
 
+//---------------------------------------------
+
+// just a test to see if users are actually logged in and authenticated
+server.get('/test', authenticate2, (rec, rez) =>{
+    usersRegis()
+    .then(go => {
+        rez.send(go)
+    })
+    .catch(err => {
+        rez.send(err)
+    })
+
+})
+
+
+function usersRegis () {
+    return db('users').select('username', 'password')
+}
+
+function authenticate (req,res, next) {
+    const token = localStorage.getItem('jwt');
+
+    if (token) {
+        jwt.verify(token, secreto.jwtSecret, (err, decoded) => {
+            if (err) {return res.status(402).json(err)}
+            else {
+            req.decoded = decoded;
+            //console.log(req.decoded)
+            next();
+            }
+        })
+    } else {
+        return ( res.status(403).json({
+            error: "No Token Provided, must be an authorized jwt token in local storage...",
+        }))
+    }
+}
+
+
+function authenticate2 (req, res, next) {
+    const token = req.get('Authorization');
+
+    if (token) {
+        jwt.verify(token, secreto.jwtSecret, (err, decoded) => {
+            if (err) {return res.status(402).json(err)}
+            else {
+            req.decoded = decoded;
+            //console.log(req.decoded)
+            next();
+            }
+        })
+    } else {
+        return ( res.status(403).json({
+            error: "No Token Provided, must be in Authorization header on request",
+        }))
+    }
+}
+
 module.exports = server;
+
