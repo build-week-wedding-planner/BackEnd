@@ -18,7 +18,7 @@ server.use(function(req,res,next) {
 
 });
 
-const softserver = require('/api/server')
+const softserver = require('./api/server')
 
 server.use(softserver);
 

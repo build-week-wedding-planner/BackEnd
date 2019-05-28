@@ -18,6 +18,6 @@ server.get('/', (req,res) => {
     res.send("Avengers Assemble !!!")
 } )
 
-configureRoutes(server);
+// configureRoutes(server);
 
 module.exports = server;
