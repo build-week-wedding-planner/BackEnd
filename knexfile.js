@@ -35,7 +35,8 @@ const dbSettings = {
     max: 10
   },
   migrations: {
-    directory: './migrations'
+    directory: './migrations',
+    tableName: 'dbmigrations'
   },
   seeds: {
     directory: './seeds'
@@ -46,3 +47,4 @@ module.exports = {
   development: dbSettings,
   production: dbSettings
 };
+
