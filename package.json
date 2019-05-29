@@ -1,24 +1,15 @@
 {
-  "name": "BackEnd",
+  "name": "backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "backend project for wedding planning",
   "main": "index.js",
-  "scripts": {
-    "server": "nodemon index.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/build-week-wedding-planner/BackEnd.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/build-week-wedding-planner/BackEnd/issues"
-  },
-  "homepage": "https://github.com/build-week-wedding-planner/BackEnd#readme",
+  "repository": "https://github.com/build-week-wedding-planner/BackEnd/tree/AmberMeador",
+  "author": "Amber Meador",
+  "license": "MIT",
+  "private": true,
   "dependencies": {
     "axios": "^0.18.0",
+    "bcrypt": "^3.0.6",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^8.0.0",
@@ -26,10 +17,14 @@
     "helmet": "^3.18.0",
     "jsonwebtoken": "^8.5.1",
     "knex": "^0.16.5",
+    "morgan": "^1.9.1",
     "pg": "^7.11.0",
     "sqlite3": "^4.0.8"
   },
   "devDependencies": {
     "nodemon": "^1.19.1"
+  },
+  "scripts": {
+    "start": "nodemon index.js"
   }
 }
