@@ -1,10 +1,10 @@
 {
   "name": "backend",
-  "version": "y",
-  "description": "y",
+  "version": "1.0.0",
+  "description": "backend project for wedding planning",
   "main": "index.js",
-  "repository": "y",
-  "author": "y",
+  "repository": "https://github.com/build-week-wedding-planner/BackEnd/tree/AmberMeador",
+  "author": "Amber Meador",
   "license": "MIT",
   "private": true,
   "dependencies": {
