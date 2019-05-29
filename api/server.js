@@ -142,6 +142,7 @@ function authenticate (req,res, next) {
     }
 }
 
+//-----------------------------------------------
 
 function authenticate2 (req, res, next) {
     const token = req.get('Authorization');
@@ -161,6 +162,56 @@ function authenticate2 (req, res, next) {
         }))
     }
 }
+
+//-----------------------------------------------
+
+server.get("/events", (req, res) => {
+
+    console.log('starting to get events')
+    blah()
+    .then(event => {
+      res.status(200).json(event);
+    })
+    .catch(err => {
+      res.status(500).json({ error: "The event could not be retrieved." });
+    });
+});
+
+
+function blah() {
+    console.log('totes gonna find an event')
+    return db('events').select('id','eventname','date', 'description', 'location', 'theme')
+    
+}
+
+
+server.post('/addevent', (req, res) => {
+    console.log('we gonna try to add an event')
+    let post = req.body
+
+    addPost(post)
+        .then(saved => {
+            res.status(201).json(saved);
+        })
+        .catch(error => {
+            res.status(503).json({message: 'Something is wrong... somewhere...'});
+        });
+})
+        
+
+
+
+async function addPost (post) {
+    console.log('before')
+    const sally = await db('events').insert(post);
+    console.log('after')
+    return (
+        `New Post ID: ${post.eventname} : Added :)`
+        )
+}
+
+
+//-----------------------------------------------
 
 module.exports = server;
 
