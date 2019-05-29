@@ -1,13 +1,13 @@
 const express = require("express");
 const cors = require("cors");
 const helmet = require("helmet");
-const eventRouter = require("../config/event-router")
+// const eventRouter = require("../config/event-router")
 const secreto = require("./secrets");
-server.use("/api/event", eventRouter);
+// server.use("/api/event", eventRouter);
 //const configureRoutes = require('../config/routes.js');
-
 const server = express();
-
+const router = require("../config/event-router");
+server.use("/api/events", router);
 require("dotenv").config();
 
 const db = require("../database/dbConfig");
