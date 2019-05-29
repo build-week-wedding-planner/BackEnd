@@ -8,6 +8,7 @@ exports.up = function(knex, Promise) {
         events.string('description', 255).notNullable();
         events.string('location', 255).notNullable();
         events.string('theme', 255).notNullable();
+        events.string('vendors', 255).notNullable();
     })
   
 };

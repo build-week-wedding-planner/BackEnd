@@ -180,7 +180,7 @@ server.get("/events", (req, res) => {
 
 function blah() {
     console.log('totes gonna find an event')
-    return db('events').select('id','eventname','date', 'description', 'location', 'theme')
+    return db('events').select('id','eventname','date', 'description', 'location', 'theme', 'vendors')
     
 }
 
