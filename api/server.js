@@ -1,17 +1,23 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
+const morgan = require('morgan')
 
 const secreto = require('./secret');
 
 //const configureRoutes = require('../config/routes.js');
 
 
-
-
 const server = express();
+var bodyParser = require('body-parser');
 
-require('dotenv').config();
+server.use(helmet()); // hides your tech stack from sniffers
+server.use(express.json()); // built-in
+server.use(morgan("dev")); // logging middleware for console
+server.use(cors()); // allows domains/ports to connect to your server
+
+
 
 const db = require('../database/dbConfig')
 
@@ -19,7 +25,7 @@ const axios = require('axios');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-server.use(express.json());
+
 
 // configureRoutes(server);
 
