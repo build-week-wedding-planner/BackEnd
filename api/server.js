@@ -61,7 +61,7 @@ function token(person) {
   };
   console.log("we got the token");
 
-  return jwt.sign(payload, secreto.jwtSecret, options);
+  return jwt.sign(payload, secret.jwtSecret, options);
 }
 
 function searchy(x) {
@@ -86,11 +86,9 @@ server.post("/login", (req, res) => {
       }
     })
     .catch(error => {
-      res
-        .status(501)
-        .json({
-          message: "soemthing is truly really really wrong with this..."
-        });
+      res.status(501).json({
+        message: "soemthing is truly really really wrong with this..."
+      });
     });
 });
 
@@ -113,34 +111,11 @@ function usersRegis() {
 
 //-----------------------------------------------
 
-function authenticate(req, res, next) {
-  const token = localStorage.getItem("token");
-
-  if (token) {
-    jwt.verify(token, secreto.jwtSecret, (err, decoded) => {
-      if (err) {
-        return res.status(402).json(err);
-      } else {
-        req.decoded = decoded;
-
-        next();
-      }
-    });
-  } else {
-    return res.status(403).json({
-      error:
-        "No Token Provided, must be an authorized jwt token in local storage..."
-    });
-  }
-}
-
-//-----------------------------------------------
-
 function authenticate2(req, res, next) {
   const token = req.get("Authorization");
 
   if (token) {
-    jwt.verify(token, secreto.jwtSecret, (err, decoded) => {
+    jwt.verify(token, secret.jwtSecret, (err, decoded) => {
       if (err) {
         return res.status(402).json(err);
       } else {
@@ -184,7 +159,7 @@ function blah() {
 
 //-----------------------------------------------
 
-server.post("/addevent", authenticate, (req, res) => {
+server.post("/addevent", authenticate2, (req, res) => {
   console.log("we gonna try to add an event");
   let post = req.body;
 
@@ -206,7 +181,7 @@ async function addPost(post) {
 
 //-----------------------------------------------
 
-server.delete("/deleteevent/:id", (rec, rez) => {
+server.delete("/deleteevent/:id", authenticate2, (rec, rez) => {
   let thingtodie = rec.params.id;
 
   db("events")
@@ -230,7 +205,7 @@ server.delete("/deleteevent/:id", (rec, rez) => {
 
 //-----------------------------------------------
 
-server.put("/updateevent/:id", (reck, rez) => {
+server.put("/updateevent/:id", authenticate2, (reck, rez) => {
   let updoot = reck.params.id;
 
   db("events")
