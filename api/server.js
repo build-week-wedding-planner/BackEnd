@@ -21,7 +21,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 server.get("/", (req, res) => {
-  res.status(201).json("Avengers Assemble !!!");
+  res.status(201).json("just a test");
 });
 
 //----------------------------------------------------
@@ -87,7 +87,7 @@ server.post("/login", (req, res) => {
     })
     .catch(error => {
       res.status(501).json({
-        message: "soemthing is truly really really wrong with this..."
+        message: "there is a problum"
       });
     });
 });

@@ -29,5 +29,5 @@ server.use(express.json());
 const port = process.env.PORT || 3300;
 
 server.listen(port, () => {
-   console.log(`Hey... it is working on port...${port}`);
+   console.log(`port working${port}`);
 })
