@@ -184,6 +184,7 @@ function blah() {
     
 }
 
+//-----------------------------------------------
 
 server.post('/addevent', (req, res) => {
     console.log('we gonna try to add an event')
@@ -197,8 +198,6 @@ server.post('/addevent', (req, res) => {
             res.status(503).json({message: 'Something is wrong... somewhere...'});
         });
 })
-        
-
 
 
 async function addPost (post) {
