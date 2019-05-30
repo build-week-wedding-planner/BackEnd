@@ -128,7 +128,7 @@ function usersRegis () {
 
 function authenticate (req,res, next) {
     const token = localStorage.getItem('token');
-
+    console.log('hey we got a token it is:', token)
     if (token) {
         jwt.verify(token, secreto.jwtSecret, (err, decoded) => {
             if (err) {return res.status(402).json(err)}
