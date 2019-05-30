@@ -3,7 +3,17 @@
 
 
 // const db = knex(knexConfig);
-
+// update: function(id, changes) {
+//     return db('actions')
+//       .where('id', id)
+//       .update(changes)
+//       .then(count => (count > 0 ? this.get(id) : null));
+//   },
+//   remove: function(id) {
+//     return db('actions')
+//       .where('id', id)
+//       .del();
+//   },
 // router.get("/", (req, res) => {
 //   db("event")
 //     .then(event => {
@@ -33,7 +43,48 @@
 //       res.status(500).json({err: err.message});
 //     });
 // });
+// router.delete("/:id", (req, res) => {
+//   const actionId = req.params.id;
+//   db.remove(eventId)
+//     .then(deleted => {
+//       if (deleted) {
+//         res.status(200).json(deleted);
+//       } else {
+//         res
+//           .status(404)
+//           .json({ error: "The event with the specified ID does not exist." });
+//       }
+//     })
+//     .catch(err => {
+//       res.status(500).json({
+//         error: err,
+//         message: "The event could not be removed"
+//       });
+//     });
+// });
 
+// router.put("/:id", (req, res) => {
+//   const eventId = req.params.id;
+//   const updateInfo = req.body;
+
+//   console.log(updateInfo);
+//   if (updateInfo.notes && updateInfo.description) {
+//     db.update(eventId, updateInfo)
+//       .then(event => {
+//         res.status(200).json(event);
+//       })
+//       .catch(err => {
+//         res.status(500).json({
+//           error: err,
+//           message: "The event information could not be modified."
+//         });
+//       });
+//   } else {
+//     res
+//       .status(400)
+//       .json({ message: "Please provide  and contents for the event." });
+//   }
+// });
 
 // module.exports = router;
 
