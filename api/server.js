@@ -189,7 +189,7 @@ function blah() {
 
 //-----------------------------------------------
 
-server.post('/addevent', authenticate, (req, res) => {
+server.post('/addevent', authenticate2, (req, res) => {
     console.log('we gonna try to add an event')
     let post = req.body
 
