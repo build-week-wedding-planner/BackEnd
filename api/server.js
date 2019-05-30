@@ -213,5 +213,49 @@ async function addPost (post) {
 
 //-----------------------------------------------
 
+server.delete('/deleteevent/:id', (rec,rez) => {
+    let thingtodie = rec.params.id;
+
+    db('events').where({id: thingtodie}).del()
+    .then( itsdead =>{
+        if(!itsdead){
+            rez.send('Nope... that does not exist...')
+        }
+        else{
+            rez.status(402).json({message: 'Yup, you killed it. It is not here anymore!'})
+        }
+    })
+    .catch( errorz => {
+        rez.status(501).json({message: 'Failed.  You tried... and failed miserably...'})
+    })
+})
+
+//-----------------------------------------------
+
+server.put('/updateevent/:id', (reck, rez) => {
+    let updoot = reck.params.id;
+
+    db('events').where({id: updoot}).update(reck.body)
+    .then( newlook => {
+        if (newlook > 0 ) {
+            db('events').where({id: reck.params.id})
+            .then(things => {
+                rez.status(201).json({message:'you have successfully updooted'})
+            })
+            
+        }
+        else {
+            rez.status(403).json({message: 'failed to update stuff...'})
+        }
+    })
+    .catch( errorz => {
+        rez.status(501).json(errorz)
+    })
+})
+
+
+
+//-----------------------------------------------
+
 module.exports = server;
 
