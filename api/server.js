@@ -30,7 +30,7 @@ const jwt = require('jsonwebtoken');
 // configureRoutes(server);
 
 server.get('/', (req,res) => {
-    res.send("Avengers Assemble !!!")
+    res.status(201).json("Avengers Assemble !!!")
 } )
 
 //----------------------------------------------------
@@ -123,8 +123,11 @@ function usersRegis () {
     return db('users').select('username', 'password')
 }
 
+
+//-----------------------------------------------
+
 function authenticate (req,res, next) {
-    const token = localStorage.getItem('jwt');
+    const token = localStorage.getItem('token');
 
     if (token) {
         jwt.verify(token, secreto.jwtSecret, (err, decoded) => {
