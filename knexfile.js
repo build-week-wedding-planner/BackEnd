@@ -18,24 +18,41 @@
 require('dotenv').config();
 
 const localPg = {
-  host: process.env.HOST,
-  database: process.env.DATABASE,
-  port: process.env.PORT,
-  user: process.env.USER,
-  password: process.env.PASS || ''
+  host: process.env.Host,
+  database: process.env.Database,
+  port: process.env.Port,
+  user: process.env.User,
+  password: process.env.Password || ''
 };
 
-const dbConnection = process.env.DATABASE_URL || localPg;
+//const dbConnection = process.env.DATABASE_URL || localPg;
 
 const dbSettings = {
   client: 'pg',
-  connection: dbConnection,
+  connection: localPg,
   pool: {
     min: 2,
     max: 10
   },
   migrations: {
-    directory: './migrations'
+    directory: './migrations',
+    tableName: 'dbmigrations'
+  },
+  seeds: {
+    directory: './seeds'
+  }
+};
+
+const dbSettings2 = {
+  client: 'pg',
+  connection: process.env.DATABASE_URL,
+  pool: {
+    min: 2,
+    max: 10
+  },
+  migrations: {
+    directory: './migrations',
+    tableName: 'dbmigrations'
   },
   seeds: {
     directory: './seeds'
@@ -44,5 +61,6 @@ const dbSettings = {
 
 module.exports = {
   development: dbSettings,
-  production: dbSettings
+  production: dbSettings2
 };
+
