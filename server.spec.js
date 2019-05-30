@@ -21,5 +21,35 @@ describe("server", () => {
     });
   });
 
-
+  describe("POST /events", () => {
+    let data = {};
+    it("respond with 201 created", async () => {
+      await request(server)
+        .post("/events")
+        .send(data)
+        .set("Accept", "application/json")
+        expect(201);
+    });
+  });
+        
+  
+  describe("POST /events", () => {
+    let data = {};
+    it("respond with 500 not created", () => {
+      request(server)
+        .post("/events")
+        .send(data)
+        .set("Accept", "application/json")
+        .expect("Content-Type", /json/)
+        .expect(500);
+    });
+  });
+  it("validate that the required fields are included inside the body", () => {
+    request(server)
+      .post("/events")
+      .send({ title: "" })
+      .set("Content-Type", "application/json")
+      .expect(422);
+  });
+  
 
