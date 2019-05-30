@@ -215,7 +215,7 @@ async function addPost (post) {
 
 //-----------------------------------------------
 
-server.delete('/deleteevent/:id', (rec,rez) => {
+server.delete('/deleteevent/:id', authenticate2, (rec,rez) => {
     let thingtodie = rec.params.id;
 
     db('events').where({id: thingtodie}).del()
@@ -234,7 +234,7 @@ server.delete('/deleteevent/:id', (rec,rez) => {
 
 //-----------------------------------------------
 
-server.put('/updateevent/:id', (reck, rez) => {
+server.put('/updateevent/:id', authenticate2, (reck, rez) => {
     let updoot = reck.params.id;
 
     db('events').where({id: updoot}).update(reck.body)
