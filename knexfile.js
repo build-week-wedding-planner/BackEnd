@@ -1,21 +1,5 @@
 require("dotenv").config();
-let testing = {
-  testing: {
-    client: "sqlite3",
-    connection: {
-      filename: "./database/test.db3",
-    },
-    useNullAsDefault: true,
 
-    migrations: {
-      directory: "./migrations",
-      tableName: "dbmigrations"
-    },
-    seeds: {
-      directory: "./seeds"
-    },
-  }
-}
 const localPg = {
   host: process.env.Host,
   database: process.env.Database,
@@ -39,9 +23,7 @@ const dbSettings = {
   },
   seeds: {
     directory: "./seeds"
-  },
-
- 
+  }
 };
 const dbSettings2 = {
   client: "pg",
@@ -62,5 +44,18 @@ const dbSettings2 = {
 module.exports = {
   development: dbSettings,
   production: dbSettings2,
-  testing: testing
+  testing: {
+    client: "sqlite3",
+    connection: {
+      filename: "./database/test.db3"
+    },
+    useNullAsDefault: true,
+
+    migrations: {
+      directory: "./migrations"
+    },
+    seeds: {
+      directory: "./seeds"
+    }
+  }
 };
