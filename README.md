@@ -20,7 +20,8 @@ back end for the wedding planner app.
 | '/updateevent/:id' | Updates the event with the ID number sent, and new body object with ALL fields required from '/addevent' |
 
 
-#Final Test
+# Final Test
+
 Final test passed 5/30/2019.
 -All endpoints are working.
 -Jest tests passing once .env removed from equation (see notes in dbConfig.js)
