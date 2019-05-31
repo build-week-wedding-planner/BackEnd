@@ -15,16 +15,7 @@ back end for the wedding planner app.
 | Endpoint | Description |
 | --- | --- |
 | '/events' | fetches a list of events, returning an array of objects. (No auth needed for this one, but required for others) |
-| '/addevent' | Add event in following format (all fields required):
-{
-	"eventname": "Test2",
-	"date": "date",
-	"description": "description description description description",
-	"location": "location",
-	"theme": "theme goes here!",
-	"vendors": "vendors go here"
-}
-  |
+| '/addevent' | Add event in following format (all fields required):{"eventname": "Test2", "date": "date", "description": "description description description description", "location": "location", "theme": "theme goes here!", "vendors": "vendors go here" } |
 
 | '/deleteevent/:id' | Deletes the event with the ID number sent |
 | '/updateevent/:id' | Updates the event with the ID number sent, and new body object with ALL fields required from '/addevent' |
